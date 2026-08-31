@@ -1,5 +1,8 @@
 package com.ryozaki.voidcraft.item;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.phys.AABB;
 
+import java.util.List;
 import com.ryozaki.voidcraft.component.ModComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
@@ -17,7 +20,11 @@ public class VoidSwordItem extends Item {
     public VoidSwordItem(Properties properties) {
         super(properties);
     }
-
+    @Override
+    public boolean isFoil(ItemStack stack) {
+        return stack.getOrDefault(ModComponents.VOID_CHARGED, false)
+                || super.isFoil(stack);
+    }
     @Override
     public InteractionResult use(
             Level level,
@@ -102,6 +109,23 @@ public class VoidSwordItem extends Item {
 
                 Vec3 start = player.getEyePosition();
                 Vec3 direction = player.getLookAngle().normalize();
+
+
+                Vec3 end = start.add(direction.scale(12.0));
+
+// 做一个覆盖整条水晶波的检测区域
+                AABB searchBox = player.getBoundingBox()
+                        .expandTowards(direction.scale(12.0))
+                        .inflate(1.0);
+
+// 找到范围内所有活着的生物
+                List<LivingEntity> targets = serverLevel.getEntitiesOfClass(
+                        LivingEntity.class,
+                        searchBox,
+                        entity -> entity != player
+                                && entity.isAlive()
+                                && !entity.isSpectator()
+                );
 
                 // 暂时让水晶波飞 12 格
                 for (double distance = 1.0; distance <= 12.0; distance += 0.20) {
@@ -189,6 +213,68 @@ public class VoidSwordItem extends Item {
                 player.sendOverlayMessage(
                         Component.literal("Crystal Wave Released!")
                 );
+
+                LivingEntity closestTarget = null;
+                double closestDistance = Double.MAX_VALUE;
+
+                for (LivingEntity target : targets) {
+
+                    // 把实体 hitbox 稍微扩大，让水晶波更容易命中
+                    AABB hitbox = target.getBoundingBox().inflate(0.75);
+
+                    // 检查从玩家眼睛到 12 格终点的直线是否穿过实体
+                    if (hitbox.clip(start, end).isPresent()) {
+
+                        double distance = player.distanceToSqr(target);
+
+                        if (distance < closestDistance) {
+                            closestDistance = distance;
+                            closestTarget = target;
+                        }
+                    }
+                }
+                if (closestTarget != null) {
+
+                    closestTarget.hurtServer(
+                            serverLevel,
+                            serverLevel.damageSources().playerAttack(player),
+                            8.0F
+                    );
+
+                    Vec3 hitPos = closestTarget.position().add(
+                            0,
+                            closestTarget.getBbHeight() * 0.5,
+                            0
+                    );
+
+                    // 命中时爆出更多紫色粒子
+                    serverLevel.sendParticles(
+                            ParticleTypes.WITCH,
+                            hitPos.x,
+                            hitPos.y,
+                            hitPos.z,
+                            25,
+                            0.45,
+                            0.45,
+                            0.45,
+                            0.03
+                    );
+
+                    serverLevel.sendParticles(
+                            PowerParticleOption.create(
+                                    ParticleTypes.DRAGON_BREATH,
+                                    1.0F
+                            ),
+                            hitPos.x,
+                            hitPos.y,
+                            hitPos.z,
+                            20,
+                            0.35,
+                            0.35,
+                            0.35,
+                            0.03
+                    );
+                }
             }
 
             return InteractionResult.SUCCESS;
