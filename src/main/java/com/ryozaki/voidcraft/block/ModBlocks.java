@@ -78,7 +78,17 @@ public class ModBlocks {
                 .modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS)
                 .register((creativeTab) -> {
                     creativeTab.accept(VOID_CRYSTAL_BLOCK.asItem());
-                    creativeTab.accept(VOID_ORE.asItem());
+                    creativeTab.accept(DEEPSLATE_VOID_ORE.asItem());
+
                 });
+
     }
+    public static final Block DEEPSLATE_VOID_ORE = register(
+            ModBlockItemIds.DEEPSLATE_VOID_ORE,
+            Block::new,
+            BlockBehaviour.Properties.of()
+                    .strength(4.5F, 4.0F)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.DEEPSLATE)
+    );
 }

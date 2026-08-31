@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "voidcraft:block/deepslate_void_ore",
+    "particle": "voidcraft:block/deepslate_void_ore"
+  }
+}

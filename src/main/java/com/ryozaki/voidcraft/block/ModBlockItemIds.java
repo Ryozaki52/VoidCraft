@@ -10,6 +10,8 @@ public class ModBlockItemIds {
             create("void_crystal_block");
     public static final BlockItemId VOID_ORE =
             create("void_ore");
+    public static final BlockItemId DEEPSLATE_VOID_ORE =
+            create("deepslate_void_ore");
     private static BlockItemId create(String name) {
         Identifier id =
                 Identifier.fromNamespaceAndPath(VoidCraft.MOD_ID, name);

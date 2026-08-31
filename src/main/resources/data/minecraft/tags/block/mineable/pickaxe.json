@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "voidcraft:void_ore"
+    "voidcraft:void_ore",
+    "voidcraft:deepslate_void_ore"
   ]
 }
