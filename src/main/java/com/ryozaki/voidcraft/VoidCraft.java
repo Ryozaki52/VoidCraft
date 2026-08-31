@@ -7,6 +7,7 @@ import net.minecraft.resources.Identifier;
 import com.ryozaki.voidcraft.component.ModComponents;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import com.ryozaki.voidcraft.worldgen.ModWorldGeneration;
 
 public class VoidCraft implements ModInitializer {
 	public static final String MOD_ID = "voidcraft";
@@ -24,6 +25,7 @@ public class VoidCraft implements ModInitializer {
 		ModComponents.initialize();
 		ModItems.initialize();
 		ModBlocks.initialize();
+		ModWorldGeneration.initialize();
 		LOGGER.info("VoidCraft initialized!");
 		LOGGER.info("Hello Fabric world!");
 	}
