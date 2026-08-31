@@ -5,15 +5,40 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.ToolMaterial;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.ToolMaterial;
 
 import java.util.function.Function;
 
 public class ModItems {
 
+    public static final ToolMaterial VOID_TOOL_MATERIAL = new ToolMaterial(
+            BlockTags.INCORRECT_FOR_DIAMOND_TOOL,
+            1800,
+            8.0F,
+            3.0F,
+            18,
+            ModItemTags.REPAIRS_VOID_TOOLS
+    );
+
+
+
+
     public static final Item VOID_CRYSTAL = register(
             ModItemIds.VOID_CRYSTAL,
             Item::new,
             new Item.Properties()
+    );
+    public static final Item VOID_SWORD = register(
+            ModItemIds.VOID_SWORD,
+            Item::new,
+            new Item.Properties().sword(
+                    VOID_TOOL_MATERIAL,
+                    4.0F,
+                    -2.4F
+            )
     );
 
     public static Item register(
@@ -31,5 +56,7 @@ public class ModItems {
     public static void initialize() {
         CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS)
                 .register((creativeTab) -> creativeTab.accept(VOID_CRYSTAL));
+        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.COMBAT)
+                .register((creativeTab) -> creativeTab.accept(VOID_SWORD));
     }
 }
