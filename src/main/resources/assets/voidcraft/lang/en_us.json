@@ -1,5 +1,6 @@
 {
   "item.voidcraft.void_crystal": "Void Crystal",
   "block.voidcraft.void_crystal_block": "Void Crystal Block",
-  "item.voidcraft.void_sword": "Void Sword"
+  "item.voidcraft.void_sword": "Void Sword",
+  "block.voidcraft.void_ore": "Void Ore"
 }

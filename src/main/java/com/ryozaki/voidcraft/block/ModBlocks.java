@@ -23,7 +23,14 @@ public class ModBlocks {
                     .strength(5.0F)
                     .sound(SoundType.AMETHYST)
     );
-
+    public static final Block VOID_ORE = register(
+            ModBlockItemIds.VOID_ORE,
+            Block::new,
+            BlockBehaviour.Properties.of()
+                    .strength(4.0F, 4.0F)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.STONE)
+    );
     private static Block register(
             ResourceKey<Block> id,
             Function<BlockBehaviour.Properties, Block> blockFactory,
@@ -71,6 +78,7 @@ public class ModBlocks {
                 .modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS)
                 .register((creativeTab) -> {
                     creativeTab.accept(VOID_CRYSTAL_BLOCK.asItem());
+                    creativeTab.accept(VOID_ORE.asItem());
                 });
     }
 }
