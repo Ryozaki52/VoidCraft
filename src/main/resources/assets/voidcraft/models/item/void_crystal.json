@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "voidcraft:item/void_crystal",
+    "particle": "voidcraft:item/void_crystal"
+  }
+}
