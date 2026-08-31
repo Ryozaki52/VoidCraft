@@ -9,7 +9,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.ToolMaterial;
-
+import com.ryozaki.voidcraft.component.ModComponents;
 import java.util.function.Function;
 
 public class ModItems {
@@ -33,12 +33,17 @@ public class ModItems {
     );
     public static final Item VOID_SWORD = register(
             ModItemIds.VOID_SWORD,
-            Item::new,
-            new Item.Properties().sword(
-                    VOID_TOOL_MATERIAL,
-                    4.0F,
-                    -2.4F
-            )
+            VoidSwordItem::new,
+            new Item.Properties()
+                    .sword(
+                            VOID_TOOL_MATERIAL,
+                            4.0F,
+                            -2.4F
+                    )
+                    .component(
+                            ModComponents.VOID_CHARGED,
+                            false
+                    )
     );
 
     public static Item register(

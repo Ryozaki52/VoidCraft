@@ -4,7 +4,7 @@ import net.fabricmc.api.ModInitializer;
 import com.ryozaki.voidcraft.block.ModBlocks;
 import com.ryozaki.voidcraft.item.ModItems;
 import net.minecraft.resources.Identifier;
-
+import com.ryozaki.voidcraft.component.ModComponents;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,6 +21,7 @@ public class VoidCraft implements ModInitializer {
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
+		ModComponents.initialize();
 		ModItems.initialize();
 		ModBlocks.initialize();
 		LOGGER.info("VoidCraft initialized!");
