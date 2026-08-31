@@ -1,7 +1,11 @@
 package com.ryozaki.voidcraft.item;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.AABB;
-
+import net.minecraft.ChatFormatting;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
+import net.minecraft.world.item.Item.TooltipContext;
+import java.util.function.Consumer;
 import java.util.List;
 import com.ryozaki.voidcraft.component.ModComponents;
 import net.minecraft.network.chat.Component;
@@ -24,6 +28,32 @@ public class VoidSwordItem extends Item {
     public boolean isFoil(ItemStack stack) {
         return stack.getOrDefault(ModComponents.VOID_CHARGED, false)
                 || super.isFoil(stack);
+    }
+    @Override
+    public void appendHoverText(
+            ItemStack stack,
+            TooltipContext context,
+            TooltipDisplay displayComponent,
+            Consumer<Component> textConsumer,
+            TooltipFlag type
+    ) {
+
+        boolean charged = stack.getOrDefault(
+                ModComponents.VOID_CHARGED,
+                false
+        );
+
+        if (charged) {
+            textConsumer.accept(
+                    Component.literal("Crystal Charge: READY")
+                            .withStyle(ChatFormatting.LIGHT_PURPLE)
+            );
+        } else {
+            textConsumer.accept(
+                    Component.literal("Crystal Charge: EMPTY")
+                            .withStyle(ChatFormatting.DARK_GRAY)
+            );
+        }
     }
     @Override
     public InteractionResult use(
