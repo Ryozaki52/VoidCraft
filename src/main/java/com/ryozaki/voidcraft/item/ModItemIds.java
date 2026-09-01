@@ -10,6 +10,7 @@ public class ModItemIds {
 
     public static final ResourceKey<Item> VOID_CRYSTAL = create("void_crystal");
     public static final ResourceKey<Item> VOID_SWORD = create("void_sword");
+    public static final ResourceKey<Item> VOID_PICKAXE = create("void_pickaxe");
     public static ResourceKey<Item> create(String name) {
         return ResourceKey.create(
                 Registries.ITEM,

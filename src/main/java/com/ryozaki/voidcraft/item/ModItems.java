@@ -23,9 +23,6 @@ public class ModItems {
             ModItemTags.REPAIRS_VOID_TOOLS
     );
 
-
-
-
     public static final Item VOID_CRYSTAL = register(
             ModItemIds.VOID_CRYSTAL,
             Item::new,
@@ -45,7 +42,20 @@ public class ModItems {
                             false
                     )
     );
-
+    public static final Item VOID_PICKAXE = register(
+            ModItemIds.VOID_PICKAXE,
+            VoidPickaxeItem::new,
+            new Item.Properties()
+                    .pickaxe(
+                            VOID_TOOL_MATERIAL,
+                            1.0F,
+                            -2.8F
+                    )
+                    .component(
+                            ModComponents.VOID_CHARGED,
+                            false
+                    )
+    );
     public static Item register(
             ResourceKey<Item> itemKey,
             Function<Item.Properties, Item> itemFactory,
@@ -63,5 +73,8 @@ public class ModItems {
                 .register((creativeTab) -> creativeTab.accept(VOID_CRYSTAL));
         CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.COMBAT)
                 .register((creativeTab) -> creativeTab.accept(VOID_SWORD));
+        CreativeModeTabEvents.modifyOutputEvent(
+                CreativeModeTabs.TOOLS_AND_UTILITIES
+        ).register((creativeTab) -> creativeTab.accept(VOID_PICKAXE));
     }
 }

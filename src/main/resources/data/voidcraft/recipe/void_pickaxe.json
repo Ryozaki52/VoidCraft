@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "VVV",
+    " S ",
+    " S "
+  ],
+  "key": {
+    "V": "voidcraft:void_crystal",
+    "S": "minecraft:stick"
+  },
+  "result": {
+    "id": "voidcraft:void_pickaxe",
+    "count": 1
+  }
+}
