@@ -4,5 +4,9 @@
   "item.voidcraft.void_sword": "Void Sword",
   "block.voidcraft.void_ore": "Void Ore",
   "block.voidcraft.deepslate_void_ore": "Deepslate Void Ore",
-  "item.voidcraft.void_pickaxe": "Void Pickaxe"
+  "item.voidcraft.void_pickaxe": "Void Pickaxe",
+  "item.voidcraft.void_helmet": "Void Helmet",
+  "item.voidcraft.void_chestplate": "Void Chestplate",
+  "item.voidcraft.void_leggings": "Void Leggings",
+  "item.voidcraft.void_boots": "Void Boots"
 }

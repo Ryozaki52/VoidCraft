@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.ryozaki.voidcraft.worldgen.ModWorldGeneration;
 import com.ryozaki.voidcraft.event.ModMiningEvents;
-
+import com.ryozaki.voidcraft.armor.ModArmorEffects;
 
 
 
@@ -31,8 +31,10 @@ public class VoidCraft implements ModInitializer {
 		ModBlocks.initialize();
 		ModWorldGeneration.initialize();
 		ModMiningEvents.initialize();
+		ModArmorEffects.initialize();
 		LOGGER.info("VoidCraft initialized!");
 		LOGGER.info("Hello Fabric world!");
+
 	}
 
 	public static Identifier id(String path) {

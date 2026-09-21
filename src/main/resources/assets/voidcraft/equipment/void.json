@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "voidcraft:void"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "voidcraft:void"
+      }
+    ]
+  }
+}

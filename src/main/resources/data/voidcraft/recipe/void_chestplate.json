@@ -1,0 +1,17 @@
+
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "V V",
+    "VVV",
+    "VVV"
+  ],
+  "key": {
+    "V": "voidcraft:void_crystal"
+  },
+  "result": {
+    "id": "voidcraft:void_chestplate",
+    "count": 1
+  }
+}

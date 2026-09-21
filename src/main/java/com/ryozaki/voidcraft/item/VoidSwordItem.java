@@ -19,6 +19,8 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.core.particles.PowerParticleOption;
+import com.ryozaki.voidcraft.armor.ModArmorEffects;
+import net.minecraft.server.level.ServerPlayer;
 public class VoidSwordItem extends Item {
 
     public VoidSwordItem(Properties properties) {
@@ -265,10 +267,21 @@ public class VoidSwordItem extends Item {
                 }
                 if (closestTarget != null) {
 
+
+                    float waveDamage = 8.0F;
+
+// 穿齐 Void Armor 时，水晶波伤害提高到 10
+                    if (player instanceof ServerPlayer serverPlayer
+                            && ModArmorEffects.hasFullVoidArmor(serverPlayer)) {
+
+                        waveDamage = 10.0F;
+                    }
+
+// 对命中的敌人造成伤害
                     closestTarget.hurtServer(
                             serverLevel,
                             serverLevel.damageSources().playerAttack(player),
-                            8.0F
+                            waveDamage
                     );
 
                     Vec3 hitPos = closestTarget.position().add(

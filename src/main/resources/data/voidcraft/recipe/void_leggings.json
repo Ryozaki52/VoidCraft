@@ -1,0 +1,17 @@
+
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "VVV",
+    "V V",
+    "V V"
+  ],
+  "key": {
+    "V": "voidcraft:void_crystal"
+  },
+  "result": {
+    "id": "voidcraft:void_leggings",
+    "count": 1
+  }
+}

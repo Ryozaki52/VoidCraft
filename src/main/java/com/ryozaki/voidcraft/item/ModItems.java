@@ -11,6 +11,11 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.ToolMaterial;
 import com.ryozaki.voidcraft.component.ModComponents;
 import java.util.function.Function;
+import net.minecraft.world.item.equipment.ArmorType;
+
+
+
+
 
 public class ModItems {
 
@@ -56,6 +61,62 @@ public class ModItems {
                             false
                     )
     );
+    public static final Item VOID_HELMET = register(
+            ModItemIds.VOID_HELMET,
+            Item::new,
+            new Item.Properties()
+                    .humanoidArmor(
+                            VoidArmorMaterial.INSTANCE,
+                            ArmorType.HELMET
+                    )
+                    .durability(
+                            ArmorType.HELMET.getDurability(
+                                    VoidArmorMaterial.BASE_DURABILITY
+                            )
+                    )
+    );
+    public static final Item VOID_CHESTPLATE = register(
+            ModItemIds.VOID_CHESTPLATE,
+            Item::new,
+            new Item.Properties()
+                    .humanoidArmor(
+                            VoidArmorMaterial.INSTANCE,
+                            ArmorType.CHESTPLATE
+                    )
+                    .durability(
+                            ArmorType.CHESTPLATE.getDurability(
+                                    VoidArmorMaterial.BASE_DURABILITY
+                            )
+                    )
+    );
+    public static final Item VOID_LEGGINGS = register(
+            ModItemIds.VOID_LEGGINGS,
+            Item::new,
+            new Item.Properties()
+                    .humanoidArmor(
+                            VoidArmorMaterial.INSTANCE,
+                            ArmorType.LEGGINGS
+                    )
+                    .durability(
+                            ArmorType.LEGGINGS.getDurability(
+                                    VoidArmorMaterial.BASE_DURABILITY
+                            )
+                    )
+    );
+    public static final Item VOID_BOOTS = register(
+            ModItemIds.VOID_BOOTS,
+            Item::new,
+            new Item.Properties()
+                    .humanoidArmor(
+                            VoidArmorMaterial.INSTANCE,
+                            ArmorType.BOOTS
+                    )
+                    .durability(
+                            ArmorType.BOOTS.getDurability(
+                                    VoidArmorMaterial.BASE_DURABILITY
+                            )
+                    )
+    );
     public static Item register(
             ResourceKey<Item> itemKey,
             Function<Item.Properties, Item> itemFactory,
@@ -69,12 +130,36 @@ public class ModItems {
     }
 
     public static void initialize() {
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS)
-                .register((creativeTab) -> creativeTab.accept(VOID_CRYSTAL));
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.COMBAT)
-                .register((creativeTab) -> creativeTab.accept(VOID_SWORD));
+
+        // Void Crystal
+        CreativeModeTabEvents.modifyOutputEvent(
+                CreativeModeTabs.INGREDIENTS
+        ).register((creativeTab) -> {
+            creativeTab.accept(VOID_CRYSTAL);
+        });
+
+        // Void Sword + Void Armor
+        CreativeModeTabEvents.modifyOutputEvent(
+                CreativeModeTabs.COMBAT
+        ).register((creativeTab) -> {
+            creativeTab.accept(VOID_SWORD);
+            creativeTab.accept(VOID_HELMET);
+            creativeTab.accept(VOID_CHESTPLATE);
+            creativeTab.accept(VOID_LEGGINGS);
+            creativeTab.accept(VOID_BOOTS);
+        });
+
+
+        // Void Pickaxe
         CreativeModeTabEvents.modifyOutputEvent(
                 CreativeModeTabs.TOOLS_AND_UTILITIES
-        ).register((creativeTab) -> creativeTab.accept(VOID_PICKAXE));
+        ).register((creativeTab) -> {
+            creativeTab.accept(VOID_PICKAXE);
+        });
     }
-}
+
+
+
+
+
+    }
